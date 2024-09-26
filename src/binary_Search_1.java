@@ -35,6 +35,16 @@ public class binary_Search_1 {
         }
         return ans;
     }
+    static int firstOccurenceIndex_Alternate(int [] array,int target){
+        int start = 0,end = array.length-1;
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+            if (array[mid] == target && (mid == 0 || array[mid-1] != target))return mid;
+            else if (array[mid] > target) end = mid - 1;
+            else start = mid + 1;
+        }
+        return -1;
+    }
     static int lastOccurenceIndex(int [] array,int target){
         int start = 0;
         int ans = -1;
@@ -52,6 +62,15 @@ public class binary_Search_1 {
             }
         }
         return ans;
+    }
+    static int lastOccurenceIndex_Alternate(int [] array,int target){
+        int start = 0,end = array.length - 1;
+        while (start <= end){
+            int mid = start + (end - start) / 2;
+            if (array[mid] == target && (mid == array.length-1 || array[mid+1] != target)) return mid;else if (array[mid] > target) end = mid - 1;
+            else start = mid + 1;
+        }
+        return -1;
     }
     static int recursiveBinarySearch(int [] array,int target,int start,int end){
         while (start <= end){

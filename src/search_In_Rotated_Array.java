@@ -26,21 +26,20 @@ public class search_In_Rotated_Array {
     while (start <= end ){
         int mid = start + (end - start) / 2;
        if (array[mid] == target)return mid;
-       else if (array[mid] <= array[end]) {
-           if (array[mid] < target && array[end] >= target){
-               start = mid + 1;
-           }
-           else {
-               end = mid - 1;
-           }
-       }
        else if(array[mid] >= array[start]){
            if (array[start] <= target && array[mid] > target){
            end = mid - 1;
            }
            else {
                start = mid + 1;
-
+           }
+       }
+       else  {
+           if (array[mid] < target && array[end] >= target){
+               start = mid + 1;
+           }
+           else {
+               end = mid - 1;
            }
        }
     }
@@ -56,13 +55,6 @@ public class search_In_Rotated_Array {
             else if (array[start] == array[mid] && array[mid] == array[end]) {
                 start++;
                 end--;
-            } else if (array[mid] <= array[end]) {
-                if (array[mid] < target && array[end] >= target){
-                    start = mid + 1;
-                }
-                else {
-                    end = mid - 1;
-                }
             }
             else if(array[mid] >= array[start]){
                 if (array[start] <= target && array[mid] > target){
@@ -70,7 +62,14 @@ public class search_In_Rotated_Array {
                 }
                 else {
                     start = mid + 1;
-
+                }
+            }
+            else   {
+                if (array[mid] < target && array[end] >= target){
+                    start = mid + 1;
+                }
+                else {
+                    end = mid - 1;
                 }
             }
         }
@@ -79,7 +78,7 @@ public class search_In_Rotated_Array {
     public static void main(String[] args) {
 //        int [] array = {10,11,12,13,1,2,3,4,5,6,7,8,9};
         int [] array = {2,3,4,5,1};
-        int [] array_1 = {1,1,2,2,0,0,1};
+        int [] array_1 = {2,2,3,3,3,4,4,0,0,0,1,1,1,1,1};
         System.out.println(minimumElementIndexOfRotatedArray(array));
         System.out.println(targetInRotatedArray(array,1));
         System.out.println(targetInRotatedArrayWithduplicateElement(array_1,2));
